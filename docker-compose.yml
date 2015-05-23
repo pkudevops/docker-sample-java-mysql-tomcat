@@ -12,7 +12,7 @@ dbinit:
   entrypoint: /bin/bash
   volumes:
     - .:/host
-  command: -c "sleep 4; mysql -u java --password=java -h mysql javatest < /host/init.sql; exit 0"
+  command: -c "sleep 4; mysql -u java --password=java -h mysql javatest < /host/init.sql; sleep 10; exit 0"
   links:
     - db:mysql
 
@@ -22,4 +22,4 @@ app:
     - dbinit
     - db:mysql
   ports:
-    - "8080"
+    - "80:8080"
